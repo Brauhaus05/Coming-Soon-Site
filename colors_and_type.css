@@ -1,0 +1,243 @@
+/* ===========================================================
+   Bonanza Café — Colors & Type
+   A tactile, rugged field-journal aesthetic.
+   All colors authored in oklch (matches the source repo).
+   =========================================================== */
+
+/* Webfonts: Zilla Slab (display) + Lora (body).
+   These are the exact families used in the source codebase. */
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+
+:root {
+  /* ---------- Brand palette (raw tokens) ---------- */
+  --paper:     oklch(0.95 0.015 80);   /* #F4EFE6  light beige paper        */
+  --parchment: oklch(0.91 0.025 80);   /* #EAE3D2  faded parchment          */
+  --espresso:  oklch(0.30 0.020 40);   /* #3B2F2F  deep espresso            */
+  --ink:       oklch(0.18 0.005 50);   /* #1C1917  charcoal                 */
+  --sepia:     oklch(0.55 0.025 60);   /* #8C7A6B  sepia rule + caption     */
+  --ember:     oklch(0.62 0.180 42);   /* #C85A17  burnt-orange accent      */
+  --label-mint:oklch(0.88 0.040 185);  /* coffee-label background           */
+
+  /* ---------- Semantic surface tokens ---------- */
+  --background:           var(--paper);
+  --foreground:           var(--ink);
+  --card:                 var(--parchment);
+  --card-foreground:      var(--ink);
+  --popover:              var(--parchment);
+  --popover-foreground:   var(--ink);
+
+  /* Action / accent */
+  --primary:              var(--espresso);
+  --primary-foreground:   var(--paper);
+  --accent:               var(--ember);
+  --accent-foreground:    var(--paper);
+  --secondary:            var(--parchment);
+  --secondary-foreground: var(--espresso);
+
+  /* Quiet / muted */
+  --muted:                var(--parchment);
+  --muted-foreground:     var(--sepia);
+
+  /* Lines + states */
+  --border:               var(--sepia);
+  --input:                var(--sepia);
+  --ring:                 var(--ember);
+  --destructive:          oklch(0.55 0.18 27);
+  --destructive-foreground: var(--paper);
+
+  /* ---------- Type families ---------- */
+  --font-display: "Zilla Slab", Georgia, "Times New Roman", serif;
+  --font-body:    "Lora", Georgia, "Times New Roman", serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* ---------- Radii ---------- */
+  --radius:    0.625rem;   /* 10px — softly rounded; most surfaces are sharp-cornered */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* ---------- Shadows: hard-offset "stamp" shadows are the brand signature. ---------- */
+  --shadow-stamp:        8px 8px 0 0 var(--primary);
+  --shadow-stamp-sm:     4px 4px 0 0 var(--primary);
+  --shadow-stamp-lg:     12px 12px 0 0 var(--primary);
+  --shadow-stamp-ember:  8px 8px 0 0 var(--accent);
+  --shadow-stamp-paper:  8px 8px 0 0 oklch(0.95 0.015 80 / 0.4);
+
+  /* ---------- Tracking presets (heavy use of letter-spacing) ---------- */
+  --track-tight:   -0.02em;
+  --track-normal:  0;
+  --track-label:   0.18em;   /* eyebrow caps */
+  --track-meta:    0.22em;   /* button caps  */
+  --track-eyebrow: 0.28em;   /* small caps   */
+  --track-mast:    0.40em;   /* masthead corner marks */
+  --track-cafe:    0.50em;   /* "CAFÉ" wordmark */
+}
+
+/* ===========================================================
+   Base type scale — semantic, ready to use as plain elements.
+   Sized for desktop "premium editorial" reading.
+   =========================================================== */
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Display headings — slab serif, tight tracking, often UPPERCASE */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: var(--track-tight);
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 1;
+  letter-spacing: var(--track-tight);
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0;
+}
+h4, .h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.2;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0;
+}
+
+/* Eyebrow / overline — uppercase tiny caps in sepia */
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: var(--track-mast);
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Body */
+p, .p {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--foreground);
+  text-wrap: pretty;
+}
+.lead {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.caption {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+/* Pull quote — left-rule, italic, ember accent */
+blockquote, .pullquote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--foreground);
+  border-left: 4px solid var(--accent);
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+/* Drop cap helper — used at the start of editorial paragraphs */
+.dropcap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 4.5rem;
+  line-height: 0.8;
+  margin: 0.25rem 0.5rem 0 0;
+}
+
+/* Mono — used sparingly for coordinates / lot numbers */
+code, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* Links */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-underline-offset: 0.25em;
+}
+a:hover { text-decoration: underline; }
+
+/* ===========================================================
+   Brand utilities — these are the signature visual moves.
+   =========================================================== */
+
+/* Paper-grain noise overlay — apply to any section to add texture */
+.paper-noise { position: relative; isolation: isolate; }
+.paper-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.23  0 0 0 0 0.18  0 0 0 0 0.18  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.paper-noise > * { position: relative; z-index: 1; }
+
+/* Hard-offset "stamp" shadow utilities */
+.shadow-stamp     { box-shadow: var(--shadow-stamp); }
+.shadow-stamp-sm  { box-shadow: var(--shadow-stamp-sm); }
+.shadow-stamp-lg  { box-shadow: var(--shadow-stamp-lg); }
+.shadow-stamp-ember { box-shadow: var(--shadow-stamp-ember); }
+
+/* Double rule — newspaper-style horizontal divider */
+.double-rule {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 4px 0;
+}
+
+/* Dashed sepia border — used for "ticket" / pending cards */
+.border-dashed-sepia { border: 1px dashed var(--sepia); }
+
+/* Vintage stamp animation */
+@keyframes stamp-in {
+  0%   { transform: scale(2.4) rotate(-18deg); opacity: 0; }
+  60%  { transform: scale(0.9) rotate(-6deg);  opacity: 1; }
+  100% { transform: scale(1)   rotate(-8deg);  opacity: 1; }
+}
+.animate-stamp { animation: stamp-in 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
